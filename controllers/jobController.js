@@ -33,6 +33,28 @@ exports.postJob = async (req, res) => {
         console.log(error);
     }
 }
+// get latest jobs
+exports.getLatestJobs = async (req, res) => {
+    try {
+        let jobs = await Job.find().populate({
+            path: "company"
+        }).sort({ createdAt: -1 });
+        if (!jobs) {
+            return res.status(404).json({
+                message: "Jobs not found.",
+                success: false
+            })
+        };
+        jobs = jobs.slice(0, 3)
+        return res.status(200).json({
+            jobs,
+            success: true
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // get jobs - student
 exports.getAllJobs = async (req, res) => {
     try {
@@ -60,6 +82,7 @@ exports.getAllJobs = async (req, res) => {
         console.log(error);
     }
 }
+
 // get job by id - student
 exports.getJobById = async (req, res) => {
     try {
@@ -71,11 +94,12 @@ exports.getJobById = async (req, res) => {
                 success: false
             })
         };
-        return res.status(200).json({ job, success: true });
+        return res.status(200).json(job);
     } catch (error) {
         console.log(error);
     }
 }
+
 // jobs created by admin
 exports.getAdminJobs = async (req, res) => {
     try {

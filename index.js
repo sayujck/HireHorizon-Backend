@@ -21,7 +21,7 @@ const PORT = 3000 || process.env.port
 jpServer.use("/api/v1/user", userRoute);
 jpServer.use("/api/v1/company", companyRoute);
 jpServer.use("/api/v1/job", jobRoute);
-jpServer.use("/api/v1/application", applicationRoute);
+jpServer.use("/api/v1/application", applicationRoute); 
 
 
 jpServer.listen(PORT,()=>{

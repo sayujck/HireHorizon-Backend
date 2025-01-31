@@ -6,6 +6,8 @@ const router = new express.Router()
 
 //post job
 router.post('/post',jwtMiddleware,jobController.postJob)
+//get latest jobs
+router.get('/getlatest',jobController.getLatestJobs)
 //get all jobs
 router.get('/get',jwtMiddleware,jobController.getAllJobs)
 //get jobs by id
