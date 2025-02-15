@@ -1,6 +1,6 @@
 const Job = require('../models/jobModel')
 
-// admin post job
+// post job
 exports.postJob = async (req, res) => {
     try {
         const { title, description, requirements, salary, location, jobType, experience, vaccancy, companyId } = req.body;
@@ -8,7 +8,7 @@ exports.postJob = async (req, res) => {
 
         if (!title || !description || !requirements || !salary || !location || !jobType || !experience || !vaccancy || !companyId) {
             return res.status(400).json({
-                message: "Somethin is missing.",
+                message: "Something is missing.",
                 success: false
             })
         };

@@ -3,13 +3,18 @@ const Company = require('../models/companyModel')
 // register
 exports.registerCompany = async (req, res) => {
     try {
-        const { companyName } = req.body;
-        let company = await Company.findOne({ name: companyName });
+        const { name, description, website, location  } = req.body;
+        let company = await Company.findOne({ name: name });
         if (company) {
-            return res.status(400).json("Company already registered")
+            return res.status(401).json({
+                message:"Company already registered"
+        })
         };
         company = await Company.create({
-            name: companyName,
+            name:name,
+            description:description,
+            website:website,
+            location:location,
             userId: req.userId
         });
 
@@ -44,6 +49,7 @@ exports.getCompany = async (req, res) => {
         console.log(error);
     }
 }
+
 // get company by id
 exports.getCompanyById = async (req, res) => {
     try {

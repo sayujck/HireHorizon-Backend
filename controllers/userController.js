@@ -77,7 +77,7 @@ exports.loginController = async (req, res) => {
                 user: existingUser,
                 token,
                 message: 'Login Successfull',
-                success: true
+                success: true 
             })
         }
 

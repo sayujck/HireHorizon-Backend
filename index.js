@@ -16,7 +16,7 @@ jpServer.use(express.json())
 jpServer.use(express.urlencoded({extended:true}));
 
 
-const PORT = 3000 || process.env.port
+const PORT = 3000
 
 jpServer.use("/api/v1/user", userRoute);
 jpServer.use("/api/v1/company", companyRoute);
@@ -30,5 +30,5 @@ jpServer.listen(PORT,()=>{
 })
 
 jpServer.get('/',(req,res)=>{
-    res.status(200).send(`<h1 style="color:red">Server started at and waiting for client</h1>`)
+    res.status(200).send(`<h1 style="color:red">Server started and waiting for client</h1>`)
 })
